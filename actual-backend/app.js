@@ -5,14 +5,16 @@ const jwt = require('jsonwebtoken');
 const { getStoredItems, storeItems } = require('./data/items');
 
 const app = express();
-const JWT_SECRET = 'your-secret-key-change-in-production'; // Change this in production
+const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key-change-in-production';
+const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:5173';
 
 app.use(bodyParser.json());
 
 app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Origin', FRONTEND_URL);
   res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
   next();
 });
 
@@ -86,4 +88,7 @@ app.post('/items', async (req, res) => {
   res.status(201).json({ message: 'Stored new item.', item: newItem });
 });
 
-app.listen(8080);
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
