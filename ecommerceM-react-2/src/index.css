@@ -1,0 +1,328 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Assistant,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+    box-sizing: border-box;
+}
+header {
+    display: flex;
+    background-color: #ffffff;
+    height: 80px;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #b6b1b1;
+}
+.myntra_logo {
+    height: 45px;
+}
+.logo_container {
+    margin-left: 4%;
+}
+.action_bar {
+    margin-right: 4%;
+}
+.nav_bar {
+    display: flex;
+    min-width: 500px;
+    justify-content: space-evenly;
+}
+.nav_bar a {
+    font-size: 14px;
+    letter-spacing: .3px;
+    color: #282c3f;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 28px 0;
+}
+.nav_bar a:hover {
+    border-bottom: 4px solid #f54e77;
+}
+
+.nav_bar a sup {
+    color: #ff3f6c;
+    font-size: 10px;
+}
+
+.search_bar {
+    height: 40px;
+    min-width: 200px;
+    width: 30%;
+    display: flex;
+    align-items: center;
+}
+.search_icon {
+    box-sizing: content-box;
+    height: 20px;
+    padding: 10px;
+
+    background-color: #f5f5f6;
+    color: #282c3f;
+    font-weight: 300;
+    border-radius: 4px 0 0 4px;
+}
+.search_input {
+    color: #696e79;
+    background-color: #f5f5f6;
+    flex-grow: 1;
+    height: 40px;
+    border: 0;
+    border-radius: 0 4px 4px 0;
+}
+
+.action_bar {
+    display: flex;
+    min-width: 200px;
+    justify-content: space-evenly;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.action_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.bag-item-count {
+    background-color: #f16565;
+    white-space: nowrap;
+    text-align: center;
+    line-height: 18px;
+    padding: 0 6px;
+    height: 18px;
+    position: relative;
+    border-radius: 50%;
+    font-size: 12px;
+    color: #fff;
+    left: 13px;
+    top: -44px;
+    font-weight: 700;
+    cursor: pointer;
+}
+.action_container {
+    text-decoration: none;
+}
+a.action_container:link {
+    color:black;
+}
+.foot{
+    display: flex;
+    flex-direction: column;
+}
+.foot a {
+ font-size: 15px;
+ padding: 8px;
+ text-decoration: none;
+ color: black;
+}
+.foot h3{
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+.footer_container{
+    display: flex;
+    justify-content: space-evenly;
+    padding: 50px;
+    background-color: #f5f5f6;
+}
+.bagitems_container{
+    width: 250px;
+    margin: 10px;
+    margin-top: 30px;
+}
+.bagitems_container img {
+    width: 100%;
+}
+.bagitems_rating{
+    font-weight: bold;
+    font-size: 12px;
+}
+.bagitems_company{
+    font-size: 20px;
+    font-weight: 600;
+    margin-top: 7px;
+}
+.bagitems_discription{
+    font-size: 15px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.bagitems_currentprice{
+    font-size: 15px;
+    font-weight: 750;
+}
+.bagitems_ogprice{
+    text-decoration: line-through;
+    margin: 8px;
+    font-size: 12.5px;
+    color:#b6b1b1
+}
+.bagitems_discount {
+    color: orange;
+    font-weight: 700;
+}
+.bagitems_main{
+    margin: 40px 10%;
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+.add_cart {
+    margin-top: 10px;
+    width: 100%;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    background-color: #198754;
+    font-weight: 600;
+    padding: 0.375rem;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.add_cart:hover {
+  background-color: #1a4e36;
+}
+.remove_cart{
+    margin-top: 10px;
+    width: 100%;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    background-color: rgb(204, 51, 31);
+    font-weight: 600;
+    padding: 0.375rem;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.remove_cart:hover {
+    background-color: rgb(134, 17, 1);
+}
+/* bagvalue and bagsummary */
+.cart_main_container{
+    display: flex;
+    width: 100vw;
+    min-height: 27vh;
+    /* border: 1px solid red; */
+}
+.bagsummary_container{
+    display: flex;
+    flex-direction: column;
+    min-height: 21vh;
+    width: 60vw;
+    border-right: 1px solid black;
+    /* border: 1px solid green; */
+}
+.bagvalue_container{
+    min-height: 21vh;
+    width: 40vw;
+    /* border: 1px solid rgb(66, 66, 16); */
+    padding-top: 50px;
+    padding-left: 25px;
+}
+.bb{
+    margin: 5px 0 5px 0;
+    display: flex;
+    font-size: 14px;
+    justify-content: space-between;
+}
+.bagvalue_finalbox{
+    width: 60%;
+}
+.hr{
+    border-top: var(--bs-border-width) solid;
+    opacity: 1.25;
+    margin: 1rem 0;
+}
+.head {
+    margin: 18px 0;
+}
+.place_order_btn{
+    width: 100%;
+    height: 32px;
+    margin-top: 10px;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    background-color: rgb(255, 65, 97);
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 12px;
+}
+
+/* bag summary */
+
+.bagsummary_box {
+    border-radius: 3px;
+    padding: 10px;
+    margin-left: 150px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    display: flex;
+    border: 1px solid rgba(63, 61, 61, 0.253);
+    height: 160px;
+    width: 80%;
+    gap: 50px;
+}
+.bagsummary_left {
+    height: 138px;
+    width: 121px;
+}
+.bagsummary_left img {
+    width: 100%;
+    height: 100%;
+}
+.bagsummary_pricing{
+    display: flex;
+    width: 100%;
+    gap: 6px;
+}
+.bagsummary_curr_price{
+    font-weight: 600;
+}
+.bagsummary_og_price {
+    opacity: 0.5;
+    font-size: small;
+    margin-top: 3.5px;
+    text-decoration: line-through;
+}
+.bagsummary_dis_percent{
+    color: green;
+}
+.bagsummary_cross_company{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+.bagsummary_right{
+    width: 100%;
+}
+
+/* Logout button styles */
+.logout-btn {
+    background-color: #ff3f6c;
+    color: white;
+    border: none;
+    margin-top: 3.75px;
+    padding: 6px 8px;
+    height: 27px;
+    margin-left: 10px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.logout-btn:hover {
+    background-color: #e63554;
+}
+
+.logout-btn:active {
+    transform: scale(0.98);
+}
