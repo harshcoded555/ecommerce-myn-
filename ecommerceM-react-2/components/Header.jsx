@@ -14,7 +14,7 @@ const Header = () => {
     };
 
     return (<>
-    <header>
+    <header className='header'>
         <Link className="logo_container" to="/">
             <img
             className="myntra_logo"

@@ -6,11 +6,13 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import itemSlice, { itemActions } from "../store/itemSlice";
 import Login from "../components/Login";
-
+import { useMediaQuery } from "react-responsive";
+import MobileHeader from "../components/MobileHeader";
 const App = () => {
   const dispatch = useDispatch();
   const { token } = useSelector((state) => state.auth);
   const [loginSuccess, setLoginSuccess] = useState(false);
+  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 768px)" });
 
   useEffect(() => {
     const controller = new AbortController();
@@ -42,7 +44,7 @@ const App = () => {
 
   return (
     <>
-      <Header />
+      {isTabletOrMobile ? <MobileHeader/> : <Header/>}
       <Outlet />
       <Footer />
     </>
