@@ -17,7 +17,7 @@ return(<>
     <header className="mobheader_main_container">
         <span className="mobile_header_left">
             <span className="menu_icon" onClick={toggleSidebar}> <GoSidebarCollapse /> </span>
-            <img src="..\public\images\myntra_logo.webp" alt="" />
+            <Link to="/"><img src="..\public\images\myntra_logo.webp" alt="" /></Link>
         </span>
         <span className="mobile_header_right">
             <MdOutlineInstallMobile />
