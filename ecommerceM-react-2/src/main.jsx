@@ -3,10 +3,10 @@ import { createRoot } from 'react-dom/client'
 import '../styles/index.css'
 import App from '../router/App.jsx'
 import { createBrowserRouter,RouterProvider } from "react-router-dom";
-import Cart from '../components/Cart.jsx';
 import Home from '../router/Home.jsx';
 import { Provider } from 'react-redux';
 import myntraCloneStore from "../store/index.js"
+import CartDecider from '../components/CartDecider.jsx';
 
 const router = createBrowserRouter([
   {
@@ -19,7 +19,7 @@ const router = createBrowserRouter([
       },
       {
         path : "/Bag",
-        element : <Cart/>
+        element : <CartDecider/>
       }
     ]
   }

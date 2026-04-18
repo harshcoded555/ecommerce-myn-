@@ -519,3 +519,127 @@ padding: 12px 16px;
   height: auto;
   object-fit: contain;
 }
+
+/* mobcart css start */
+
+.deli_time{
+    display: flex;
+    justify-content: space-between;
+    font-weight: 600;
+}
+.deli_time-left{
+    margin: 5px;
+    padding: 2px;
+}
+.deli_time-right{
+    margin: 5px;
+    padding: 2px;
+    color: #e63554;
+}
+
+
+.mobcart-itemselected{
+    display: flex;
+    align-items: center;
+    height: 8vh;
+    justify-content: space-between;
+    background-color: #dde1eb;
+}
+
+.mobcart-item-left{
+    display: flex;
+    color: #4a4c52;
+    font-weight: 750;
+    font-size: 11px;
+    gap: 11px;
+}
+
+.mobcart-item-right{
+    display: flex;
+    gap: 2.1rem;
+    margin: 5px;
+}
+
+.item-summary-container{
+    display: flex;
+    margin: 8px 0px;
+    padding: 8px 0px;
+    background-color: white;
+}
+.item-summary-container img{
+    width: 30%;
+    height: 30%;
+}
+.item-title-container{
+    display: flex;
+    justify-content: space-between;
+    padding-right: 10px;
+}
+.item-details{
+    flex: 1;
+    margin-left: 10px;
+    width: 65%;
+}
+.sizeandqty {
+    display: flex;
+    gap: 12px;
+}
+.item-comp{
+    color: #282c3f;
+    font-weight: 500;
+    font-size: 0.875rem;
+}
+.item-comp-detail{
+    color: #535766;
+    font-weight: 400;
+    size: 14px;
+    width: 60%;
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.item-soldby{
+    color: #94969f;
+    font-weight: 400;
+    font-size: 12px;
+}
+.sizeandqty{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.SQ{
+    font-size: 14px;
+    font-weight: 500;
+    background-color: #f5f5f6;
+    color: #282c3f;
+    padding: 0px 8px;
+    border-radius: 5px;
+}
+.mob-price-detail{
+    display: flex;
+    gap: 5px;
+}
+.mob-curr-price{
+    color: #282c3f;
+    font-weight: 600;
+    size: 18px;
+}
+.mob-og-price{
+    color: #94969f;
+    font-weight: 400;
+    text-decoration: line-through;
+}
+.mob-dis-price{
+    color: #ff3f6c;
+    font-weight: 500;
+}
+
+.return-timeline{
+    font-weight: 500;
+}
+.return-policy{
+    color: #282c3f;
+    font-size: 400;
+    font-size: 0.8rem;
+    margin-top: 6px;
+}
