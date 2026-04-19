@@ -5,6 +5,7 @@ import MobCartSummary from "./MobCartSummary";
 import ShowEmpty from "./ShowEmpty";
 
 const MobCart = ({mobSelectedItem}) => {
+  console.log(mobSelectedItem)
     if (mobSelectedItem.length === 0) {
         return <ShowEmpty/>
     }
@@ -18,8 +19,8 @@ const MobCart = ({mobSelectedItem}) => {
         <div className="mobcart-item">
           <div className="mobcart-itemselected">
             <div className="mobcart-item-left">
-              <input type="checkbox" name="mobcart-checkbox" id="" />
-              <div className="items-selected">0/1 ITEMS SELECTED</div>
+              <input type="checkbox" name="mobcart-checkbox" id="" className ="all_checkbox"/>
+              <div className="items-selected">0/{mobSelectedItem.length} ITEMS SELECTED</div>
             </div>
             <div className="mobcart-item-right">
               <span>

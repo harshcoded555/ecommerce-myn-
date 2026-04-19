@@ -5,6 +5,7 @@ import ShowEmpty from "./ShowEmpty";
 
 const Cart = () => {
     let selectedCartItem = useSelector(store => store.cartItem);
+    console.log(selectedCartItem);
     if (selectedCartItem.length === 0) {
         return <ShowEmpty/>
     }
