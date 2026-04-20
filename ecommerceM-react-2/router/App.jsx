@@ -8,6 +8,7 @@ import itemSlice, { itemActions } from "../store/itemSlice";
 import Login from "../components/Login";
 import { useMediaQuery } from "react-responsive";
 import MobileHeader from "../components/MobileHeader";
+import MobileFooter from "../components/MobFooter";
 const App = () => {
   const dispatch = useDispatch();
   const { token } = useSelector((state) => state.auth);
@@ -46,7 +47,7 @@ const App = () => {
     <>
       {isTabletOrMobile ? <MobileHeader/> : <Header/>}
       <Outlet />
-      <Footer />
+      {isTabletOrMobile ? <MobileFooter/> : <Footer/>}
     </>
   );
 };
