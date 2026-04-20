@@ -8,6 +8,7 @@ import itemSlice, { itemActions } from "../store/itemSlice";
 import Login from "../components/Login";
 import { useMediaQuery } from "react-responsive";
 import MobileHeader from "../components/MobileHeader";
+import { MyProvider } from "../../ecommerceM_backend/Context/MyContext";
 const App = () => {
   const dispatch = useDispatch();
   const { token } = useSelector((state) => state.auth);
@@ -44,9 +45,11 @@ const App = () => {
 
   return (
     <>
+    <MyProvider>
       {isTabletOrMobile ? <MobileHeader/> : <Header/>}
       <Outlet />
       <Footer />
+      </MyProvider>
     </>
   );
 };

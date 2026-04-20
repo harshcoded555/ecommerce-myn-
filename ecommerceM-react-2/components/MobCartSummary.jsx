@@ -4,8 +4,9 @@ import { useDispatch } from "react-redux";
 import { cartItemActions } from "../store/cartItemSlice";
 import { cartActions } from "../store/cartSlice";
 
-const MobCartSummary = ({ item }) => {
-  let dispatch = useDispatch();
+const MobCartSummary = ({ item, checked, onToggle }) => {
+  const dispatch = useDispatch();
+
   const handleRemove = () => {
     dispatch(cartActions.removeCart(item.id));
     dispatch(cartItemActions.removeCartItem(item));
@@ -15,8 +16,13 @@ const MobCartSummary = ({ item }) => {
     <>
       <div className="item-summary-container">
         <div className="cart-img">
-        <img src={item.image} alt="" />
-        <input type="checkbox" className="img_checkbox" />
+          <img src={item.image} alt="" />
+          <input
+            type="checkbox"
+            className="img_checkbox"
+            checked={checked}
+            onChange={onToggle}
+          />
         </div>
         <div className="item-details">
           <div className="item-title-container">
