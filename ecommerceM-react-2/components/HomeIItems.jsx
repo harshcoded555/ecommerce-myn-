@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { cartActions } from "../store/cartSlice";
 import { cartItemActions } from "../store/cartItemSlice";
+import { useEffect } from "react";
 
 const HomeItems = ({perItem}) => {
 const dispatch = useDispatch();
@@ -16,7 +17,9 @@ const handleRemoveCart = () => {
     dispatch(cartActions.removeCart(perItem.id));
     dispatch(cartItemActions.removeCartItem(perItem))
 };
-
+ useEffect(() =>{
+    window.scrollTo(0,0);
+  },[]);
 return(<>
     <div className="bagitems_container">
       <img src={perItem.image} alt="" />

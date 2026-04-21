@@ -42,7 +42,6 @@ const App = () => {
   if (!token) {
     return <Login onLoginSuccess={() => setLoginSuccess(!loginSuccess)} />;
   }
-
   return (
     <>
       {isTabletOrMobile ? <MobileHeader/> : <Header/>}

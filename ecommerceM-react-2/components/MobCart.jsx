@@ -6,6 +6,9 @@ import ShowEmpty from "./ShowEmpty";
 import { useState, useEffect, useRef } from "react";
 
 const MobCart = ({ mobSelectedItem }) => {
+  useEffect(() =>{
+    window.scrollTo(0,0);
+  },[]);
   const [selectedIds, setSelectedIds] = useState(() => new Set([]));
   const allCheckbox = useRef(null);
 
@@ -38,9 +41,11 @@ const MobCart = ({ mobSelectedItem }) => {
     } else {
       setSelectedIds(new Set([]));
     }
+    console.log(selectedIds)
   };
 
   const handleItemToggle = (itemId) => {
+    console.log(selectedIds)
     setSelectedIds((current) => {
       const next = new Set(current);
       if (next.has(itemId)) {
@@ -50,6 +55,7 @@ const MobCart = ({ mobSelectedItem }) => {
       }
       return next;
     });
+    console.log(selectedIds)
   };
 
   if (!mobSelectedItem || mobSelectedItem.length === 0) {
