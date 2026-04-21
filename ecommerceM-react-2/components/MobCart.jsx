@@ -4,65 +4,43 @@ import { TbHeartPlus } from "react-icons/tb";
 import MobCartSummary from "./MobCartSummary";
 import ShowEmpty from "./ShowEmpty";
 import { useState, useEffect, useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { cartItemActions } from "../store/cartItemSlice";
 
 const MobCart = ({ mobSelectedItem }) => {
   useEffect(() =>{
     window.scrollTo(0,0);
   },[]);
-  const [selectedIds, setSelectedIds] = useState(() => new Set([]));
+  const dispatch = useDispatch();
   const allCheckbox = useRef(null);
 
   useEffect(() => {
-    if (!mobSelectedItem || mobSelectedItem.length === 0) {
-      setSelectedIds(new Set([]));
-      return;
-    }
-
-    setSelectedIds((current) => {
-      const next = new Set();
-      mobSelectedItem.forEach((item) => {
-        if (current.has(item.id)) next.add(item.id);
-      });
-      return next;
-    });
-  }, [mobSelectedItem]);
-
-  useEffect(() => {
+    const selectedCount = mobSelectedItem.filter((item) => item.selected).length;
     const total = mobSelectedItem.length;
-    const selectedCount = selectedIds.size;
     if (allCheckbox.current) {
+      allCheckbox.current.checked = selectedCount === total && total > 0;
       allCheckbox.current.indeterminate = selectedCount > 0 && selectedCount < total;
     }
-  }, [selectedIds, mobSelectedItem.length]);
+  }, [mobSelectedItem]);
 
   const handleAllToggle = (event) => {
     if (event.target.checked) {
-      setSelectedIds(new Set(mobSelectedItem.map((item) => item.id)));
+      dispatch(cartItemActions.selectAllItems());
     } else {
-      setSelectedIds(new Set([]));
+      dispatch(cartItemActions.deselectAllItems());
     }
-    console.log(selectedIds)
   };
 
   const handleItemToggle = (itemId) => {
-    console.log(selectedIds)
-    setSelectedIds((current) => {
-      const next = new Set(current);
-      if (next.has(itemId)) {
-        next.delete(itemId);
-      } else {
-        next.add(itemId);
-      }
-      return next;
-    });
-    console.log(selectedIds)
+    dispatch(cartItemActions.toggleItemSelected(itemId));
   };
 
   if (!mobSelectedItem || mobSelectedItem.length === 0) {
     return <ShowEmpty />;
   }
 
-  const allSelected = selectedIds.size === mobSelectedItem.length;
+  const selectedCount = mobSelectedItem.filter((item) => item.selected).length;
+  const allSelected = selectedCount === mobSelectedItem.length;
 
   return (
     <>
@@ -84,7 +62,7 @@ const MobCart = ({ mobSelectedItem }) => {
                 onChange={handleAllToggle}
               />
               <div className="items-selected">
-                {selectedIds.size}/{mobSelectedItem.length} ITEMS SELECTED
+                {mobSelectedItem.filter((item) => item.selected).length}/{mobSelectedItem.length} ITEMS SELECTED
               </div>
             </div>
             <div className="mobcart-item-right">
@@ -106,7 +84,7 @@ const MobCart = ({ mobSelectedItem }) => {
             <MobCartSummary
               key={item.id}
               item={item}
-              checked={selectedIds.has(item.id)}
+              checked={item.selected}
               onToggle={() => handleItemToggle(item.id)}
             />
           ))}

@@ -14,6 +14,22 @@ let cartItemSlice = createSlice({
     removeCartItem: (state, action) => {
       return state.filter((item) => item.id !== action.payload.id);
     },
+    toggleItemSelected: (state, action) => {
+      const item = state.find((item) => item.id === action.payload);
+      if (item) {
+        item.selected = !item.selected;
+      }
+    },
+    selectAllItems: (state) => {
+      state.forEach((item) => {
+        item.selected = true;
+      });
+    },
+    deselectAllItems: (state) => {
+      state.forEach((item) => {
+        item.selected = false;
+      });
+    },
   },
 });
 
