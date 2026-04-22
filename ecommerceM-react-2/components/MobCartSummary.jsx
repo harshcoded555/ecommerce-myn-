@@ -3,14 +3,24 @@ import { FaArrowsRotate } from "react-icons/fa6";
 import { useDispatch } from "react-redux";
 import { cartItemActions } from "../store/cartItemSlice";
 import { cartActions } from "../store/cartSlice";
+import { useState } from "react";
+import SizeSelector from "./SizeSelector";
 
-const MobCartSummary = ({ item, checked, onToggle }) => {
+const MobCartSummary = ({ item, checked, onToggle,size,setSize,toggleSize,toggleQty }) => {
   const dispatch = useDispatch();
 
   const handleRemove = () => {
     dispatch(cartActions.removeCart(item.id));
     dispatch(cartItemActions.removeCartItem(item));
   };
+  const [selectedSize, setSelectedSize] = useState(item.size || null);
+
+  const toggleSetSize = () =>{
+    dispatch(cartItemActions.setSelectedSize({
+    id: item.id,
+    finalSelectedSize: selectedSize,
+  }));
+  }
 
   return (
     <>
@@ -33,10 +43,20 @@ const MobCartSummary = ({ item, checked, onToggle }) => {
           </div>
           <div className="item-comp-detail">{item.item_name}</div>
           <div className="item-soldby">Sold by : MYNTRA_CLONE</div>
+
           <div className="sizeandqty">
-            <div className="SQ">Size: 40</div>
-            <div className="SQ">Qty: 1</div>
+
+            <div className="SQ">
+              <div>Size : {item.size}</div>
+              <span className="size_select" onClick={toggleSize}>⏷</span>
+            </div>
+
+            <div className="SQ">
+              <div>Qty : {item.qty}</div>
+              <span className="size_select" onClick={toggleQty}>⏷</span>
+            </div>
           </div>
+
           <div className="mob-price-detail">
             <span className="mob-curr-price">{item.current_price}</span>
             <span className="mob-og-price">{item.original_price}</span>
@@ -52,6 +72,7 @@ const MobCartSummary = ({ item, checked, onToggle }) => {
           </div>
         </div>
       </div>
+      <SizeSelector size={size} toggleSize={toggleSize} selectedSize={selectedSize} setSelectedSize={setSelectedSize} toggleSetSize={toggleSetSize} itemSizeCheck={item.size} />
     </>
   );
 };

@@ -7,12 +7,14 @@ import { useEffect } from "react";
 const Cart = () => {
     let selectedCartItem = useSelector(store => store.cartItem);
     console.log(selectedCartItem);
+    
+    useEffect(() =>{
+        window.scrollTo(0,0);
+    },[]);
+    
     if (selectedCartItem.length === 0) {
         return <ShowEmpty/>
     }
-     useEffect(() =>{
-    window.scrollTo(0,0);
-  },[]);
     return (<>
     <div className="cart_main_container">
         <div className="bagsummary_container" style={{marginTop : "45px"}}>

@@ -30,6 +30,12 @@ let cartItemSlice = createSlice({
         item.selected = false;
       });
     },
+    setSelectedSize: (state,action) => {
+      const sizeItem = state.find((item)=> item.id === action.payload.id)
+      if(sizeItem){
+        sizeItem.size = action.payload.finalSelectedSize
+      }
+    },
   },
 });
 

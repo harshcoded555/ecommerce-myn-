@@ -6,20 +6,24 @@ import ShowEmpty from "./ShowEmpty";
 import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { cartItemActions } from "../store/cartItemSlice";
+import SizeSelector from "./SizeSelector";
 
 const MobCart = ({ mobSelectedItem }) => {
-  useEffect(() =>{
-    window.scrollTo(0,0);
-  },[]);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const dispatch = useDispatch();
   const allCheckbox = useRef(null);
 
   useEffect(() => {
-    const selectedCount = mobSelectedItem.filter((item) => item.selected).length;
+    const selectedCount = mobSelectedItem.filter(
+      (item) => item.selected,
+    ).length;
     const total = mobSelectedItem.length;
     if (allCheckbox.current) {
       allCheckbox.current.checked = selectedCount === total && total > 0;
-      allCheckbox.current.indeterminate = selectedCount > 0 && selectedCount < total;
+      allCheckbox.current.indeterminate =
+        selectedCount > 0 && selectedCount < total;
     }
   }, [mobSelectedItem]);
 
@@ -35,13 +39,23 @@ const MobCart = ({ mobSelectedItem }) => {
     dispatch(cartItemActions.toggleItemSelected(itemId));
   };
 
+  const [size, setSize] = useState(false);
+  const [qty, setQty] = useState(false);
+
+  const toggleSize = () => {
+    setSize(!size)
+    console.log("size button clicked",size)
+  }
+  const toggleQty = () => {
+    console.log("qty button clicked")
+  }
+
   if (!mobSelectedItem || mobSelectedItem.length === 0) {
     return <ShowEmpty />;
   }
 
   const selectedCount = mobSelectedItem.filter((item) => item.selected).length;
   const allSelected = selectedCount === mobSelectedItem.length;
-
   return (
     <>
       <div className="mobcart-container">
@@ -53,7 +67,7 @@ const MobCart = ({ mobSelectedItem }) => {
           <div className="mobcart-itemselected">
             <div className="mobcart-item-left">
               <input
-              style={{accentColor: "#ff3f6c"}}
+                style={{ accentColor: "#ff3f6c" }}
                 ref={allCheckbox}
                 type="checkbox"
                 name="mobcart-checkbox"
@@ -62,7 +76,8 @@ const MobCart = ({ mobSelectedItem }) => {
                 onChange={handleAllToggle}
               />
               <div className="items-selected">
-                {mobSelectedItem.filter((item) => item.selected).length}/{mobSelectedItem.length} ITEMS SELECTED
+                {mobSelectedItem.filter((item) => item.selected).length}/
+                {mobSelectedItem.length} ITEMS SELECTED
               </div>
             </div>
             <div className="mobcart-item-right">
@@ -79,13 +94,20 @@ const MobCart = ({ mobSelectedItem }) => {
           </div>
         </div>
 
-        <div className="item-summary-main" style={{ backgroundColor: "#eef0f1" }}>
+        <div
+          className="item-summary-main"
+          style={{ backgroundColor: "#eef0f1" }}
+        >
           {mobSelectedItem.map((item) => (
             <MobCartSummary
+            toggleSize={toggleSize}
+            toggleQty={toggleQty}
               key={item.id}
               item={item}
               checked={item.selected}
               onToggle={() => handleItemToggle(item.id)}
+              size={size}
+              setSize={setSize}
             />
           ))}
         </div>
