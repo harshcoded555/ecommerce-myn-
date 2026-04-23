@@ -26,9 +26,8 @@ const router = createBrowserRouter([
 ])
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
+
     <Provider store={myntraCloneStore}>
     <RouterProvider router={router}/>
     </Provider>
-  </StrictMode>,
 )

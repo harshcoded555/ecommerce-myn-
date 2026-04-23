@@ -39,13 +39,8 @@ const MobCart = ({ mobSelectedItem }) => {
     dispatch(cartItemActions.toggleItemSelected(itemId));
   };
 
-  const [size, setSize] = useState(false);
   const [qty, setQty] = useState(false);
 
-  const toggleSize = () => {
-    setSize(!size)
-    console.log("size button clicked",size)
-  }
   const toggleQty = () => {
     console.log("qty button clicked")
   }
@@ -100,14 +95,11 @@ const MobCart = ({ mobSelectedItem }) => {
         >
           {mobSelectedItem.map((item) => (
             <MobCartSummary
-            toggleSize={toggleSize}
             toggleQty={toggleQty}
               key={item.id}
               item={item}
               checked={item.selected}
               onToggle={() => handleItemToggle(item.id)}
-              size={size}
-              setSize={setSize}
             />
           ))}
         </div>

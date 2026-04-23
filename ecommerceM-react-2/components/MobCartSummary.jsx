@@ -1,12 +1,13 @@
 import { RxCross2 } from "react-icons/rx";
 import { FaArrowsRotate } from "react-icons/fa6";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { cartItemActions } from "../store/cartItemSlice";
 import { cartActions } from "../store/cartSlice";
 import { useState } from "react";
 import SizeSelector from "./SizeSelector";
+import { IoMdArrowDropdown } from "react-icons/io";
 
-const MobCartSummary = ({ item, checked, onToggle,size,setSize,toggleSize,toggleQty }) => {
+const MobCartSummary = ({ item, checked, onToggle,toggleQty}) => {
   const dispatch = useDispatch();
 
   const handleRemove = () => {
@@ -14,13 +15,13 @@ const MobCartSummary = ({ item, checked, onToggle,size,setSize,toggleSize,toggle
     dispatch(cartItemActions.removeCartItem(item));
   };
   const [selectedSize, setSelectedSize] = useState(item.size || null);
-
-  const toggleSetSize = () =>{
-    dispatch(cartItemActions.setSelectedSize({
-    id: item.id,
-    finalSelectedSize: selectedSize,
-  }));
-  }
+  const [size, setSize] = useState(false);
+const toggleSize = () => {
+  setSize(!size)
+}
+const toggleSizeChange = () => {
+  dispatch(cartItemActions.setSelectedSize({id:item.id,finalSize:selectedSize}))
+}
 
   return (
     <>
@@ -48,12 +49,12 @@ const MobCartSummary = ({ item, checked, onToggle,size,setSize,toggleSize,toggle
 
             <div className="SQ">
               <div>Size : {item.size}</div>
-              <span className="size_select" onClick={toggleSize}>⏷</span>
+              <span className="size_select" onClick={toggleSize}><IoMdArrowDropdown /></span>
             </div>
 
             <div className="SQ">
               <div>Qty : {item.qty}</div>
-              <span className="size_select" onClick={toggleQty}>⏷</span>
+              <span className="size_select" onClick={toggleQty}><IoMdArrowDropdown /></span>
             </div>
           </div>
 
@@ -72,7 +73,7 @@ const MobCartSummary = ({ item, checked, onToggle,size,setSize,toggleSize,toggle
           </div>
         </div>
       </div>
-      <SizeSelector size={size} toggleSize={toggleSize} selectedSize={selectedSize} setSelectedSize={setSelectedSize} toggleSetSize={toggleSetSize} itemSizeCheck={item.size} />
+      <SizeSelector size={size} toggleSize={toggleSize} selectedSize={selectedSize} setSelectedSize={setSelectedSize} currItemSize={item.size} toggleSizeChange={toggleSizeChange}/>
     </>
   );
 };
