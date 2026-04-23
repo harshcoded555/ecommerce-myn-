@@ -73,7 +73,14 @@ const toggleSizeChange = () => {
           </div>
         </div>
       </div>
-      <SizeSelector size={size} toggleSize={toggleSize} selectedSize={selectedSize} setSelectedSize={setSelectedSize} currItemSize={item.size} toggleSizeChange={toggleSizeChange}/>
+      <SizeSelector
+        size={size}
+        toggleSize={toggleSize}
+        selectedSize={selectedSize}
+        setSelectedSize={setSelectedSize}
+        currItemSize={item.size ?? selectedSize}
+        toggleSizeChange={toggleSizeChange}
+      />
     </>
   );
 };

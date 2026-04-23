@@ -8,29 +8,32 @@ const SizeSelector = ({
   toggleSize,
   selectedSize,
   setSelectedSize,
-  itemSizeCheck,
 }) => {
   const sizes = [38, 40, 42, 44];
+  const effectiveSize = currItemSize ?? selectedSize;
+  const showOneSize = effectiveSize === "OneSize" || selectedSize === "OneSize";
+  const availableSizes = effectiveSize && effectiveSize !== "OneSize"
+    ? Array.from(new Set([effectiveSize, ...sizes])).sort((a, b) => Number(a) - Number(b))
+    : sizes;
 
   const handleSizeSelect = (sizeValue) => {
     setSelectedSize(sizeValue);
   };
 
   const handleDone = () => {
-    if (selectedSize) {
-      console.log("Selected size:", selectedSize);
+    if (selectedSize !== null && selectedSize !== undefined && selectedSize !== "") {
       toggleSize();
       toggleSizeChange();
     }
   };
-  console.log("SizeSelector - currItemSize:", currItemSize, "is OneSize?", currItemSize === "OneSize")
+
   return (
     <>
       {size && <div className="size_overlay" onClick={toggleSize}></div>}
       <div className={`size_container ${size ? "size_container_active" : ""}`}>
         <div className="size_header">Select Size</div>
         <div className="size_buttons">
-            {currItemSize === "OneSize" ? (
+            {showOneSize ? (
               <button
                 className={`size_btn_OneSize ${selectedSize === "OneSize" ? "size_btn_active" : ""}`}
                 onClick={() => handleSizeSelect("OneSize")}
@@ -38,7 +41,7 @@ const SizeSelector = ({
                 OneSize
               </button>
             ) : (
-              sizes.map((sizeValue) => (
+              availableSizes.map((sizeValue) => (
                 <button
                   key={sizeValue}
                   className={`size_btn ${selectedSize === sizeValue ? "size_btn_active" : ""}`}
