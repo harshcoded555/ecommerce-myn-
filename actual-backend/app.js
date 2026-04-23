@@ -66,7 +66,7 @@ const verifyToken = (req, res, next) => {
 
 app.get('/items', async (req, res) => {
   const storedItems = await getStoredItems();
-  await new Promise((resolve, reject) => setTimeout(() => resolve(), 500));
+  await new Promise((resolve, reject) => setTimeout(() => resolve()));
   res.json({ items: storedItems });
 });
 
