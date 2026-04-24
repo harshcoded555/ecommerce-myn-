@@ -779,3 +779,21 @@ padding: 12px 16px;
   transform: translateY(0);
 }
 /* size selector end */
+
+/* *************************************************** */
+
+/* quantity selector start */
+.qty_btn{
+    min-width: clamp(40px, 12vw, 60px);
+}
+.qty_buttons{
+    display: flex;
+    gap: 16px;
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+    justify-content: flex-start;
+}
+.qty_buttons::-webkit-scrollbar {
+  display: none;
+}
+/* quantity selector ends */

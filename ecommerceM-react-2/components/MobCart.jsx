@@ -7,6 +7,8 @@ import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { cartItemActions } from "../store/cartItemSlice";
 import SizeSelector from "./SizeSelector";
+import QtySelector from "./QtySelector";
+import { cartActions } from "../store/cartSlice";
 
 const MobCart = ({ mobSelectedItem }) => {
   useEffect(() => {
@@ -41,10 +43,12 @@ const MobCart = ({ mobSelectedItem }) => {
 
   const [qty, setQty] = useState(false);
 
-  const toggleQty = () => {
-    console.log("qty button clicked")
+  const handleDeleteFullCart = () => {
+    dispatch(cartItemActions.deleteWholeCart());
+    dispatch(cartActions.deleteFullCart());
   }
 
+  
   if (!mobSelectedItem || mobSelectedItem.length === 0) {
     return <ShowEmpty />;
   }
@@ -79,7 +83,7 @@ const MobCart = ({ mobSelectedItem }) => {
               <span>
                 <IoShareSocialOutline />
               </span>
-              <span>
+              <span onClick={handleDeleteFullCart}>
                 <FaRegTrashCan />
               </span>
               <span>
@@ -95,7 +99,6 @@ const MobCart = ({ mobSelectedItem }) => {
         >
           {mobSelectedItem.map((item) => (
             <MobCartSummary
-            toggleQty={toggleQty}
               key={item.id}
               item={item}
               checked={item.selected}

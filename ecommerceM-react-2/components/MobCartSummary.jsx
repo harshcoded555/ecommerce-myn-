@@ -6,8 +6,9 @@ import { cartActions } from "../store/cartSlice";
 import { useState } from "react";
 import SizeSelector from "./SizeSelector";
 import { IoMdArrowDropdown } from "react-icons/io";
+import QtySelector from "./QtySelector";
 
-const MobCartSummary = ({ item, checked, onToggle,toggleQty}) => {
+const MobCartSummary = ({ item, checked, onToggle}) => {
   const dispatch = useDispatch();
 
   const handleRemove = () => {
@@ -15,14 +16,22 @@ const MobCartSummary = ({ item, checked, onToggle,toggleQty}) => {
     dispatch(cartItemActions.removeCartItem(item));
   };
   const [selectedSize, setSelectedSize] = useState(item.size || null);
+  const [selectedQty,setSelectedQty] = useState(item.qty);
   const [size, setSize] = useState(false);
+  const [qty,setQty] = useState(false);
+
 const toggleSize = () => {
   setSize(!size)
+}
+const toggleQty = () => {
+  setQty(!qty)
 }
 const toggleSizeChange = () => {
   dispatch(cartItemActions.setSelectedSize({id:item.id,finalSize:selectedSize}))
 }
-
+const toggleQtyChange = () => {
+  dispatch(cartItemActions.setSelectedQty({id:item.id,finalQty:selectedQty}))
+}
   return (
     <>
       <div className="item-summary-container">
@@ -76,10 +85,18 @@ const toggleSizeChange = () => {
       <SizeSelector
         size={size}
         toggleSize={toggleSize}
+        toggleQty={toggleQty}
         selectedSize={selectedSize}
         setSelectedSize={setSelectedSize}
         currItemSize={item.size ?? selectedSize}
         toggleSizeChange={toggleSizeChange}
+      />
+      <QtySelector
+      qty={qty}
+      toggleQty={toggleQty}
+      selectedQty={selectedQty}
+      setSelectedQty={setSelectedQty}
+      toggleQtyChange={toggleQtyChange}
       />
     </>
   );

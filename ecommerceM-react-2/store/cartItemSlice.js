@@ -11,6 +11,9 @@ let cartItemSlice = createSlice({
         selected: false,
       });
     },
+    deleteWholeCart: (state,action) => {
+      return [];
+    },
     removeCartItem: (state, action) => {
       return state.filter((item) => item.id !== action.payload.id);
     },
@@ -36,6 +39,12 @@ let cartItemSlice = createSlice({
         sizeItem.size = action.payload.finalSize
       }
     },
+    setSelectedQty: (state,action) => {
+      let quantity = state.find((qty) => qty.id === action.payload.id)
+      if(quantity){
+        quantity.qty = action.payload.finalQty
+      }
+    }
   },
 });
 
